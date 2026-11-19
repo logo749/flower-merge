@@ -37,12 +37,12 @@ function leaves(cx,by,h){
 function art(s,lv){
   var o=SERIES[s],b=45,g="";
   if(lv===1){g=stem(24,b,13)+leaves(24,b,13)+'<ellipse cx="24" cy="29.4" rx="2.6" ry="3.5" fill="'+o.p1+'" stroke="'+C.line+'" stroke-width="1.2"/><ellipse cx="24" cy="30.6" rx="1.3" ry="1.5" fill="'+o.p2+'"/>';}
-  else if(lv===2){g=stem(24,b,18)+leaves(24,b,18)+'<ellipse cx="24" cy="23.4" rx="7.2" ry="8.8" fill="'+o.p1+'" stroke="'+C.line+'" stroke-width="1.3"/><ellipse cx="24" cy="23.6" rx="2.4" ry="6.2" fill="'+o.p2+'" /><path d="M24 33 C19.6 31 17.4 26.6 17.9 21.6 C20.8 25.4 22.6 29 24 32.4 Z" fill="'+C.leaf+'" stroke="'+C.line+'" stroke-width="1.1"/><path d="M24 33 C28.4 31 30.6 26.6 30.1 21.6 C27.2 25.4 25.4 29 24 32.4 Z" fill="'+C.leaf2+'" stroke="'+C.line+'" stroke-width="1.1"/><ellipse cx="24" cy="15.4" rx="1.7" ry="1.2" fill="'+o.p2+'"/>';}
+  else if(lv===2){g=stem(24,b,18)+leaves(24,b,18)+'<ellipse cx="24" cy="23.4" rx="7.2" ry="8.8" fill="'+o.p1+'" stroke="'+C.line+'" stroke-width="1.3"/><ellipse cx="24" cy="23.6" rx="2.4" ry="6.2" fill="'+o.p2+'"/><path d="M24 33 C19.6 31 17.4 26.6 17.9 21.6 C20.8 25.4 22.6 29 24 32.4 Z" fill="'+C.leaf+'" stroke="'+C.line+'" stroke-width="1.1"/><path d="M24 33 C28.4 31 30.6 26.6 30.1 21.6 C27.2 25.4 25.4 29 24 32.4 Z" fill="'+C.leaf2+'" stroke="'+C.line+'" stroke-width="1.1"/><ellipse cx="24" cy="15.4" rx="1.7" ry="1.2" fill="'+o.p2+'"/>';}
   else if(lv===3){g=stem(24,b,17)+leaves(24,b,17)+bloom(24,19,6.2,o);}
   else if(lv===4){g='<path d="M24 45 L16.6 30 L31.4 30 Z" fill="'+C.paper+'" stroke="'+C.line+'" stroke-width="1.3"/><path d="M24 45 L21.6 30.6 L24 32.2 L26.4 30.6 Z" fill="'+o.p2+'"/><path d="M24 31 V19 M18.6 30 L16.6 19.6 M29.4 30 L31.4 19.6" stroke="'+C.stem+'" stroke-width="2" fill="none" stroke-linecap="round"/>'+bloom(16.2,17.4,4.6,o)+bloom(31.8,17.4,4.6,o)+bloom(24,12.6,5.2,o)+'<path d="M17 31 q7-3.2 14 0 q-7 3.1-14 0" fill="'+o.p2+'" stroke="'+C.line+'" stroke-width="1.2"/>';}
   else if(lv===5){g='<path d="M15 34 h18 l-2.6 11 h-12.8 Z" fill="'+C.acc+'" stroke="'+C.line+'" stroke-width="1.4"/><path d="M16.4 38 h15.2 M17.6 41.4 h12.8" stroke="'+C.acc2+'" stroke-width="1.3" fill="none"/><path d="M18 34 q6-9 12 0" stroke="'+C.line+'" stroke-width="1.6" fill="none"/>'+stem(24,33,7)+'<ellipse cx="12.6" cy="27.6" rx="4.6" ry="2.6" fill="'+C.leaf+'" stroke="'+C.line+'" stroke-width="1"/><ellipse cx="35.4" cy="27.6" rx="4.6" ry="2.6" fill="'+C.leaf2+'" stroke="'+C.line+'" stroke-width="1"/>'+bloom(14.8,26,4,o)+bloom(33.2,26,4,o)+bloom(19.2,20.6,4.2,o)+bloom(28.8,20.6,4.2,o)+bloom(24,17,4.6,o);}
   else {g='<path d="M17.5 32.6 h13 l-1.6 12.4 h-9.8 Z" fill="'+C.paper+'" stroke="'+C.line+'" stroke-width="1.4"/><path d="M17.5 32.6 h13" stroke="'+C.line+'" stroke-width="1.4"/><path d="M24 30 V12 M24 30 L14 16 M24 30 L34 16 M24 30 L10.5 22 M24 30 L37.5 22 M24 30 L18.5 11 M24 30 L29.5 11" stroke="'+C.stem+'" stroke-width="1.8" fill="none" stroke-linecap="round"/>'+bloom(24,11.4,4.6,o)+bloom(14,15,4,o)+bloom(34,15,4,o)+bloom(10.5,21,3.4,o)+bloom(37.5,21,3.4,o)+bloom(18.5,9.6,3.8,o)+bloom(29.5,9.6,3.8,o);}
-  return '<svg viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet"><g transform="translate(-4.8 -9.6) scale(1.2)">'+g+'</g></svg>';
+  return '<svg viewBox="5 7 38 42" preserveAspectRatio="xMidYMid meet">'+g+'</svg>';
 }
 function webSVG(){
   return '<div class="web" style="opacity:.62"><svg viewBox="0 0 40 40"><g stroke="#aab3a4" stroke-width="1" fill="none"><path d="M2 2 L38 38 M38 2 L2 38 M20 1 V39 M1 20 H39"/><path d="M9 9 Q20 12 31 9"/><path d="M7 15 Q20 19 33 15"/><path d="M7 24 Q20 28 33 24"/></g></svg></div>';
@@ -89,13 +89,11 @@ function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("on");cle
 
 function renderHUD(){
   $("e").textContent=S.energy;
-  $("es").textContent=S.energy>=100?"已满":("下一点 "+Math.max(1,6-(Date.now()-S.tmax)/1000|0)+" 秒");
   $("c").textContent=S.coins;
   var cost=S.lv<5?LVCOST[S.lv]:0;
-  $("cs").textContent=cost?("还差 "+Math.max(0,cost-S.coins)):"已满级";
   var up=$("up");
-  up.textContent=cost?("升级 "+cost):"满级";
   up.disabled=!cost||S.coins<cost;
+  $("upv").textContent=cost?cost:"满";
   $("lvl").textContent="Lv"+S.lv;
   $("crit").textContent="暴击 "+critPct()+"%";
 }
@@ -126,7 +124,7 @@ function cellHTML(i){
       var need=BEDS.filter(function(b){return b.i===i;})[0];
       var locked=need&&S.lv<need.need;
       cls+=" bed"+(locked?" lock":"");
-      inner='<div class="pic"><svg viewBox="0 0 48 48" style="position:absolute;width:100%;height:26%"><ellipse cx="24" cy="46" rx="19" ry="5" fill="#e0d3b4" stroke="#cdbc98" stroke-width="1"/></svg>'+art(c.s,1)+'</div><div class="tag" style="top:1px;bottom:auto">'+SERIES[c.s].name+" L"+c.lv+"</div>";
+      inner='<div class="pic">'+art(c.s,1)+'</div><div class="tag">'+SERIES[c.s].name+" L"+c.lv+"</div>";
       if(locked)inner='<div class="pic" style="opacity:.35">'+art(c.s,1)+'</div><div class="tag" style="top:1px;bottom:auto">Lv'+need.need+' 解锁</div>';
     } else if(c.k==="web"){
       inner='<div class="pic">'+art(c.s,c.lv)+'</div>'+webSVG();
@@ -175,8 +173,10 @@ function produce(bed,n){
   var crit=Math.random()<S.crit,lv=crit?3:1,made=0;
   for(k=0;k<cnt&&k<sp.length;k++){S.cells[sp[k]]={k:"f",s:b.s,lv:lv};made++;}
   S.energy-=1;S.tmax=S.tmax||Date.now();
+  render();
+  for(k=0;k<made;k++)flash(sp[k],"drop2");
   toast(crit?"暴击！直接产出花枝":"+花产出 ×"+made);
-  render();save();
+  save();
 }
 function mergeInto(si,ti){
   var sc=S.cells[si],tc=S.cells[ti];
@@ -219,52 +219,79 @@ function upgrade(){
   if(bedsOpen()>0)msg+="，新花圃解锁";
   toast(msg);fillOrders();render();save();
 }
+function flash(i,cls){var bd=$("bd");if(!bd||!bd.children[i])return;var el=bd.children[i];el.classList.add(cls);setTimeout(function(){el.classList.remove(cls);},450);}
+function syncSel(){var k,bd=$("bd").children;for(k=0;k<bd.length;k++)bd[k].classList.toggle("sel",k===S.sel);}
 function tapAt(i){
   var c=S.cells[i];
-  if(c&&c.k==="bed"){produce(i);return;}
-  if(c&&c.k==="f"&&c.lv===6&&S.sel<0){split(i);render();save();return;}
+  if(!c){
+    if(S.sel>=0&&moveTo(S.sel,i)){S.sel=-1;render();flash(i,"pop");save();return;}
+    S.sel=-1;renderStatus();syncSel();return;
+  }
+  if(c.k==="bed"){produce(i);return;}
+  if(c.k==="web"){
+    if(S.sel>=0&&S.cells[S.sel]&&S.cells[S.sel].k==="f"&&mergeInto(S.sel,i)){
+      var lv=S.cells[i].lv;S.sel=-1;render();flash(i,"pop");
+      toast("清网！"+SERIES[c.s].name+" → "+LNAME[lv-1]);save();return;
+    }
+    toast("蛛网封住了：拉同种同阶的花过来解");return;
+  }
   if(S.sel>=0&&S.sel!==i){
     var sc=S.cells[S.sel];
-    if(sc&&mergeInto(S.sel,i)){S.sel=-1;toast("合并成功");render();save();return;}
-    if(sc&&moveTo(S.sel,i)){S.sel=-1;render();save();return;}
+    if(sc&&mergeInto(S.sel,i)){S.sel=-1;render();flash(i,"pop");toast("合并成功");save();return;}
   }
+  if(c.lv===6&&S.sel<0){split(i);render();save();return;}
   S.sel=(S.sel===i?-1:i);
-  renderStatus();
-  var bd=$("bd").children;for(var k=0;k<bd.length;k++)bd[k].classList.toggle("sel",k===S.sel);
+  renderStatus();syncSel();
 }
 
 function bind(){
-  var bd=$("bd");
-  bd.addEventListener("pointerdown",function(e){
-    var el=e.target.closest?e.target.closest(".cell"):null;
-    if(!el)return;
-    drag={i:+el.dataset.i,x:e.clientX,y:e.clientY,moved:false};
-  });
-  bd.addEventListener("pointerup",function(e){
-    if(!drag)return;
+  var bd=$("bd"),hover=-1;
+  function clearDrop(){if(hover>=0&&bd.children[hover])bd.children[hover].classList.remove("drop");hover=-1;}
+  function onMove(e){
+    if(!drag||drag.lock)return;
     var el=document.elementFromPoint(e.clientX,e.clientY);
     var t=el&&el.closest?el.closest(".cell"):null;
-    var si=drag.i;
-    if(t){
-      var ti=+t.dataset.i;
-      if(ti!==si){
-        var sc=S.cells[si];
-        if(sc&&sc.k==="bed"){if(bedMerge(si,ti)){toast("花圃合成为 L"+(S.cells[ti].lv));render();save();drag=null;return;}}
-        if(mergeInto(si,ti)){S.sel=-1;toast("合并成功");render();save();drag=null;return;}
-        if(moveTo(si,ti)){render();save();drag=null;return;}
-      } else { tapAt(si); drag=null; return; }
+    var ti=t?+t.dataset.i:-1;
+    if(ti===hover)return;
+    clearDrop();
+    if(ti>=0&&ti!==drag.i&&bd.children[ti]){bd.children[ti].classList.add("drop");hover=ti;}
+  }
+  bd.addEventListener("pointerdown",function(e){
+    var el=e.target.closest?e.target.closest(".cell"):null;if(!el)return;
+    var i=+el.dataset.i,c=S.cells[i];
+    drag={i:i,lock:!!(c&&c.k==="web")};
+    if(!drag.lock)el.classList.add("drag");
+    document.addEventListener("pointermove",onMove);
+    e.preventDefault();
+  });
+  document.addEventListener("pointerup",function(e){
+    if(!drag)return;
+    document.removeEventListener("pointermove",onMove);
+    var d=drag;drag=null;clearDrop();
+    if(bd.children[d.i])bd.children[d.i].classList.remove("drag");
+    if(d.lock){tapAt(d.i);return;}
+    var el=document.elementFromPoint(e.clientX,e.clientY);
+    var t=el&&el.closest?el.closest(".cell"):null;
+    var ti=t?+t.dataset.i:d.i;
+    if(ti!==d.i){
+      var sc=S.cells[d.i];
+      if(sc&&sc.k==="bed"){
+        if(bedMerge(d.i,ti)){toast("花圃合成 L"+S.cells[ti].lv);render();flash(ti,"pop");save();return;}
+        tapAt(d.i);return;
+      }
+      if(sc&&sc.k==="f"){
+        var locked=S.cells[ti]&&S.cells[ti].k==="web";
+        if(mergeInto(d.i,ti)){S.sel=-1;render();flash(ti,"pop");toast(locked?"清网成功":"合并成功");save();return;}
+        if(moveTo(d.i,ti)){render();flash(ti,"pop");save();return;}
+        toast("这里放不下");return;
+      }
+      return;
     }
-    drag=null;
+    tapAt(d.i);
   });
-  $("ord").addEventListener("click",function(e){
-    var b=e.target.closest?e.target.closest("[data-del]"):null;
-    if(b)deliver(+b.dataset.del);
-  });
+  $("ord").addEventListener("click",function(e){var b=e.target.closest?e.target.closest("[data-del]"):null;if(b)deliver(+b.dataset.del);});
   $("up").addEventListener("click",upgrade);
-  $("tools").addEventListener("click",function(e){
-    var b=e.target.closest?e.target.closest("[data-tab]"):null;
-    if(b)openSheet(b.dataset.tab);
-  });
+  $("tools").addEventListener("click",function(e){var b=e.target.closest?e.target.closest("[data-tab]"):null;if(b)openSheet(b.dataset.tab);});
   $("sheet").addEventListener("click",function(e){if(e.target.id==="sheet")$("sheet").classList.remove("on");});
   document.addEventListener("visibilitychange",function(){if(document.hidden)save();});
   window.addEventListener("pagehide",save);
@@ -272,7 +299,7 @@ function bind(){
 function openSheet(tab){
   var sb=$("sb"),h="";
   if(tab==="bed"){
-    h="<h3>花圃</h3><p>点花圃：扣 1 体力，产出该花系的 1 株花苗；花圃升到 L2/L3 后一次产 2/3 株，花苗落在花圃旁的空格。</p>";
+    h="<h3>花圃</h3><p>点花圃：扣 1 体力，产出该花系的 1 株花苗；花圃升到 L2/L3 后一次产 2/3 株。花苗落在花圃旁的空格。</p>";
     for(var k=0;k<BEDS.length;k++){
       var b=BEDS[k],ok=S.lv>=b.need;
       h+='<div class="row"><span>'+SERIES[b.s].name+" · "+["一圃","二圃","三圃"][k]+"</span><span>"+(ok?"已开放 · L"+S.cells[b.i].lv:"Lv"+b.need+" 解锁")+"</span></div>";
