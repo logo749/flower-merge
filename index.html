@@ -1,1 +1,102 @@
-@@INDEX@@@placeholder
+<!doctype html>
+<html lang='zh-CN'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover'>
+<meta name='theme-color' content='#22352b'>
+<title>异界花坊 · 合2花店</title>
+<style>
+:root{--ink:#24352c;--soft:#5f7268;--line:#d9e2d6;--paper:#f4f7ef;--card:#fff;--g:#3f6b52;--gd:#2c4d3a;--gold:#b9924f;--sh:0 6px 18px rgba(30,50,36,.10)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:#e9efe1;font-family:-apple-system,'PingFang SC','Noto Sans SC',system-ui,sans-serif;color:var(--ink)}
+body{display:flex;justify-content:center;overflow:hidden}
+#app{position:relative;width:100%;max-width:460px;height:100%;display:flex;flex-direction:column;background:linear-gradient(180deg,#f7faf0,#eff4e6 42%,#e4ecdc);overflow:hidden}
+#hud{flex:0 0 auto;display:flex;gap:6px;align-items:center;padding:8px 10px 6px}
+.chip{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 8px;box-shadow:var(--sh);min-width:0}
+.chip .k{font-size:10px;color:var(--soft);letter-spacing:.06em}
+.chip .v{font-size:15px;font-weight:700}
+.chip .s{font-size:9.5px;color:var(--soft)}
+#up{border:0;background:var(--g);color:#fff;border-radius:12px;padding:7px 10px;font-size:11px;font-weight:700;box-shadow:var(--sh)}
+#up:disabled{background:#c6d2c4;color:#7d8b80}
+#scene{flex:0 0 auto;margin:0 10px 8px;height:142px;border-radius:16px;position:relative;overflow:hidden;background:linear-gradient(180deg,#fdfbf1,#f0f4e4);border:1px solid var(--line);box-shadow:var(--sh)}
+#sign{position:absolute;left:12px;top:8px;font-size:10px;color:var(--soft)}
+#lvl{position:absolute;right:12px;top:8px;font-size:10px;color:var(--gd);background:#fff;border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+#shop{position:absolute;left:12px;bottom:6px;width:150px;height:72px}
+#guest{position:absolute;right:10px;bottom:6px;display:flex;align-items:flex-end;gap:4px}
+#bubble{background:#fff;border:1px solid var(--line);border-radius:12px 12px 4px 12px;padding:5px 9px;font-size:10.5px;max-width:158px;line-height:1.35;box-shadow:var(--sh)}
+#orders{flex:0 0 auto;margin:0 10px 6px}
+.ol{display:flex;justify-content:space-between;font-size:10.5px;color:var(--soft);margin:0 2px 5px}
+#ord{display:flex;gap:6px}
+.order{flex:1;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:6px;box-shadow:var(--sh);min-width:0}
+.order .t{font-size:9px;color:var(--soft);display:flex;justify-content:space-between}
+.order .n{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;margin:3px 0 4px}
+.ni{position:relative;width:26px;height:26px}
+.ni i{position:absolute;right:-2px;bottom:-3px;font-size:9px;font-weight:700;font-style:normal;color:#fff;background:var(--gd);border-radius:6px;padding:0 3px}
+.ni i.bad{background:#b7bfae}
+.order button{width:100%;border:0;border-radius:9px;background:var(--g);color:#fff;font-size:10.5px;font-weight:700;padding:4px 0}
+.order button:disabled{background:#dfe6da;color:#8d9a8b}
+.order.done{border-color:#9cc3a4;background:#f2f9f0}
+.order .c{font-size:9.5px;color:var(--gold);text-align:center;margin-top:2px;font-weight:700}
+#status{flex:0 0 auto;margin:2px 10px 6px;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:12px;padding:7px 10px;box-shadow:var(--sh)}
+#s1{font-size:11px;font-weight:600}
+#s2{font-size:10px;color:var(--soft);margin-top:2px}
+#bw{flex:1 1 auto;margin:0 10px 2px;min-height:0;display:flex;align-items:center;justify-content:center}
+#bd{width:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:4px;touch-action:none;background:rgba(255,255,255,.42);padding:8px;border-radius:14px;border:1px solid rgba(120,145,120,.16)}
+.cell{position:relative;aspect-ratio:1/1.16;border-radius:7px;background:rgba(255,255,255,.55);border:1px solid rgba(120,145,120,.2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cell.bed{background:linear-gradient(180deg,#fffaf0,#efe7d5);border-color:#d8cbae}
+.cell.lock{background:repeating-linear-gradient(45deg,#f2f1ea,#f2f1ea 5px,#e9e8df 5px,#e9e8df 10px);border-color:#d5d6cb}
+.cell.sel{outline:2px solid var(--g);outline-offset:-2px;z-index:3}
+.cell.drop{outline:2px dashed var(--g);outline-offset:-2px}
+.cell .pic{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.cell .pic svg{width:88%;height:88%}
+.cell .lv{position:absolute;left:2px;bottom:1px;font-size:8px;font-weight:700;color:var(--gd);background:rgba(255,255,255,.86);border-radius:4px;padding:0 2px}
+.cell .web{position:absolute;inset:0}
+.cell .web svg{width:100%;height:100%}
+.cell .tag{position:absolute;left:0;right:0;bottom:1px;text-align:center;font-size:7px;font-weight:600;color:#5b6a5c}
+#tools{flex:0 0 auto;display:flex;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+#tools button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:7px 0;font-size:10.5px;font-weight:600;color:var(--ink);box-shadow:var(--sh)}
+#sheet{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:rgba(20,35,26,.36);z-index:60}
+#sheet.on{display:flex}
+#sb{width:100%;max-width:460px;max-height:76%;overflow:auto;background:var(--paper);border-radius:18px 18px 0 0;padding:12px 14px calc(16px + env(safe-area-inset-bottom))}
+#sb h3{margin:2px 0 8px;font-size:14px}
+#sb h4{margin:12px 0 6px;font-size:12px;color:var(--gd)}
+#sb p{margin:4px 0;font-size:11.5px;line-height:1.6;color:var(--soft)}
+.row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:11.5px}
+.btn{border:0;background:var(--g);color:#fff;border-radius:10px;padding:7px 12px;font-size:11px;font-weight:700}
+.gb{background:#fff;color:var(--ink);border:1px solid var(--line)}
+#toast{position:fixed;left:50%;bottom:78px;transform:translate(-50%,8px);background:rgba(28,44,33,.92);color:#fff;font-size:11.5px;padding:7px 13px;border-radius:999px;opacity:0;transition:.22s;z-index:80;pointer-events:none;max-width:86%;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#ghost{position:fixed;pointer-events:none;z-index:99;width:34px;height:34px;transform:translate(-50%,-50%);display:none}
+@media (max-height:760px){#hud{padding:6px 10px 4px}#scene{height:84px}#shop{width:118px;height:54px}#bubble{font-size:10px;max-width:140px}.cell{aspect-ratio:1/1}#s2{display:none}#tools{padding:5px 10px calc(5px + env(safe-area-inset-bottom))}}
+@media (max-height:660px){#scene{height:68px}.order .c{display:none}}
+</style>
+</head>
+<body>
+<div id='app'>
+<header id='hud'>
+<div class='chip'><div class='k'>体力</div><div class='v' id='e'>100</div><div class='s' id='es'>已满</div></div>
+<div class='chip'><div class='k'>金币</div><div class='v' id='c'>0</div><div class='s' id='cs'>升级花店用</div></div>
+<button id='up'>升级</button>
+</header>
+<section id='scene'>
+<div id='sign'>异界花坊 · 第 1 天</div>
+<div id='lvl'>Lv0</div>
+<svg id='shop' viewBox='0 0 150 70'><rect x='8' y='30' width='88' height='36' rx='4' fill='#efe3cb' stroke='#d9c6a4'/><path d='M4 30 L52 12 L100 30 Z' fill='#c9a97c' stroke='#b18f61'/><rect x='22' y='40' width='20' height='26' rx='2' fill='#fff8ea' stroke='#ddc9a8'/><rect x='56' y='42' width='30' height='12' rx='2' fill='#dfe9d5' stroke='#c2d1b6'/><circle cx='46' cy='24' r='3' fill='#f6e7b4'/><circle cx='58' cy='21' r='2.4' fill='#f6e7b4'/><path d='M108 66 q0-16 8-16 q8 0 8 16' fill='#cbd6b8'/></svg>
+<div id='guest'><div id='bubble'>今天的订单有点多，慢慢来</div><svg width='38' height='52' viewBox='0 0 42 56'><circle cx='21' cy='14' r='9' fill='#f3d9c4' stroke='#d8b79d'/><path d='M12 12 q9-10 18 0 q-9-3-18 0' fill='#4c5c4a'/><path d='M10 56 q0-22 11-22 q11 0 11 22' fill='#7f9a86'/></svg></div>
+</section>
+<section id='orders'>
+<div class='ol'><span>订单 · 3 槽 · 不超时</span><span id='crit'>暴击 8%</span></div>
+<div id='ord'></div>
+</section>
+<div id='status'><div id='s1'>点花圃出花 · 两两合并 · 凑满订单交付</div><div id='s2'></div></div>
+<section id='bw'><div id='bd'></div></section>
+<footer id='tools'>
+<button data-tab='bed'>花圃</button><button data-tab='dex'>图鉴</button><button data-tab='shop'>装修</button><button data-tab='task'>任务·设置</button>
+</footer>
+</div>
+<div id='sheet'><div id='sb'></div></div>
+<div id='toast'></div>
+<img id='ghost' alt=''>
+<script src='app.js' defer></script>
+</body>
+</html>
