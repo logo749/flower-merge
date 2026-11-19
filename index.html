@@ -18,11 +18,11 @@ body{display:flex;justify-content:center;overflow:hidden}
 .chip .s{font-size:9.5px;color:var(--soft)}
 #up{border:0;background:var(--g);color:#fff;border-radius:12px;padding:7px 10px;font-size:11px;font-weight:700;box-shadow:var(--sh)}
 #up:disabled{background:#c6d2c4;color:#7d8b80}
-#scene{flex:0 0 auto;margin:0 10px 8px;height:142px;border-radius:16px;position:relative;overflow:hidden;background:linear-gradient(180deg,#fdfbf1,#f0f4e4);border:1px solid var(--line);box-shadow:var(--sh)}
+#scene{flex:0 0 auto;margin:0 10px 8px;height:150px;border-radius:16px;position:relative;overflow:hidden;background:linear-gradient(180deg,#fdfbf1,#f0f4e4);border:1px solid var(--line);box-shadow:var(--sh)}
 #sign{position:absolute;left:12px;top:8px;font-size:10px;color:var(--soft)}
 #lvl{position:absolute;right:12px;top:8px;font-size:10px;color:var(--gd);background:#fff;border:1px solid var(--line);border-radius:999px;padding:2px 8px}
-#shop{position:absolute;left:12px;bottom:6px;width:150px;height:72px}
-#guest{position:absolute;right:10px;bottom:6px;display:flex;align-items:flex-end;gap:4px}
+#shop{position:absolute;left:14px;bottom:8px;width:164px;height:80px}
+#guest{position:absolute;right:10px;bottom:8px;display:flex;align-items:flex-end;gap:4px}
 #bubble{background:#fff;border:1px solid var(--line);border-radius:12px 12px 4px 12px;padding:5px 9px;font-size:10.5px;max-width:158px;line-height:1.35;box-shadow:var(--sh)}
 #orders{flex:0 0 auto;margin:0 10px 6px}
 .ol{display:flex;justify-content:space-between;font-size:10.5px;color:var(--soft);margin:0 2px 5px}
@@ -31,29 +31,30 @@ body{display:flex;justify-content:center;overflow:hidden}
 .order .t{font-size:9px;color:var(--soft);display:flex;justify-content:space-between}
 .order .n{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;margin:3px 0 4px}
 .ni{position:relative;width:26px;height:26px}
-.ni i{position:absolute;right:-2px;bottom:-3px;font-size:9px;font-weight:700;font-style:normal;color:#fff;background:var(--gd);border-radius:6px;padding:0 3px}
+.ni svg{width:100%;height:100%}
+.ni i{position:absolute;right:-3px;bottom:-2px;font-size:9px;font-weight:700;font-style:normal;color:#fff;background:var(--gd);border-radius:6px;padding:0 3px}
 .ni i.bad{background:#b7bfae}
 .order button{width:100%;border:0;border-radius:9px;background:var(--g);color:#fff;font-size:10.5px;font-weight:700;padding:4px 0}
 .order button:disabled{background:#dfe6da;color:#8d9a8b}
 .order.done{border-color:#9cc3a4;background:#f2f9f0}
 .order .c{font-size:9.5px;color:var(--gold);text-align:center;margin-top:2px;font-weight:700}
-#status{flex:0 0 auto;margin:2px 10px 6px;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:12px;padding:7px 10px;box-shadow:var(--sh)}
+#status{flex:0 0 auto;margin:2px 10px 4px;background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:12px;padding:7px 10px;box-shadow:var(--sh)}
 #s1{font-size:11px;font-weight:600}
 #s2{font-size:10px;color:var(--soft);margin-top:2px}
-#bw{flex:1 1 auto;margin:0 10px 2px;min-height:0;display:flex;align-items:center;justify-content:center}
+#bw{flex:1 1 auto;margin:0 10px;min-height:0;display:flex;align-items:center;justify-content:center}
 #bd{width:100%;display:grid;grid-template-columns:repeat(9,1fr);gap:4px;touch-action:none;background:rgba(255,255,255,.42);padding:8px;border-radius:14px;border:1px solid rgba(120,145,120,.16)}
-.cell{position:relative;aspect-ratio:1/1.16;border-radius:7px;background:rgba(255,255,255,.55);border:1px solid rgba(120,145,120,.2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cell{position:relative;aspect-ratio:1/1.3;border-radius:7px;background:rgba(255,255,255,.55);border:1px solid rgba(120,145,120,.2);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .cell.bed{background:linear-gradient(180deg,#fffaf0,#efe7d5);border-color:#d8cbae}
 .cell.lock{background:repeating-linear-gradient(45deg,#f2f1ea,#f2f1ea 5px,#e9e8df 5px,#e9e8df 10px);border-color:#d5d6cb}
 .cell.sel{outline:2px solid var(--g);outline-offset:-2px;z-index:3}
 .cell.drop{outline:2px dashed var(--g);outline-offset:-2px}
 .cell .pic{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.cell .pic svg{width:88%;height:88%}
+.cell .pic svg{width:86%;height:86%}
 .cell .lv{position:absolute;left:2px;bottom:1px;font-size:8px;font-weight:700;color:var(--gd);background:rgba(255,255,255,.86);border-radius:4px;padding:0 2px}
 .cell .web{position:absolute;inset:0}
 .cell .web svg{width:100%;height:100%}
 .cell .tag{position:absolute;left:0;right:0;bottom:1px;text-align:center;font-size:7px;font-weight:600;color:#5b6a5c}
-#tools{flex:0 0 auto;display:flex;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+#tools{flex:0 0 auto;display:flex;gap:6px;padding:6px 10px calc(8px + env(safe-area-inset-bottom))}
 #tools button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:7px 0;font-size:10.5px;font-weight:600;color:var(--ink);box-shadow:var(--sh)}
 #sheet{position:fixed;inset:0;display:none;align-items:flex-end;justify-content:center;background:rgba(20,35,26,.36);z-index:60}
 #sheet.on{display:flex}
@@ -67,8 +68,8 @@ body{display:flex;justify-content:center;overflow:hidden}
 #toast{position:fixed;left:50%;bottom:78px;transform:translate(-50%,8px);background:rgba(28,44,33,.92);color:#fff;font-size:11.5px;padding:7px 13px;border-radius:999px;opacity:0;transition:.22s;z-index:80;pointer-events:none;max-width:86%;text-align:center}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 #ghost{position:fixed;pointer-events:none;z-index:99;width:34px;height:34px;transform:translate(-50%,-50%);display:none}
-@media (max-height:760px){#hud{padding:6px 10px 4px}#scene{height:84px}#shop{width:118px;height:54px}#bubble{font-size:10px;max-width:140px}.cell{aspect-ratio:1/1}#s2{display:none}#tools{padding:5px 10px calc(5px + env(safe-area-inset-bottom))}}
-@media (max-height:660px){#scene{height:68px}.order .c{display:none}}
+@media (max-height:780px){#hud{padding:6px 10px 4px}#scene{height:96px}#shop{width:126px;height:58px}#bubble{font-size:10px;max-width:140px}.order{padding:5px}.cell{aspect-ratio:1/1.08}#s2{display:none}#tools{padding:5px 10px calc(5px + env(safe-area-inset-bottom))}}
+@media (max-height:680px){#scene{height:74px}#shop{width:104px;height:48px}.order .c{display:none}.cell{aspect-ratio:1/1}}
 </style>
 </head>
 <body>
