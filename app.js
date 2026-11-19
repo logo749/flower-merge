@@ -272,19 +272,21 @@ function bind(){
 function openSheet(tab){
   var sb=$("sb"),h="";
   if(tab==="bed"){
-    h="<h3>花圃</h3><p>点花圃：扣 1 体力，产出该花系的 1 株花苗；花圃升到 L2/L3 后一次产 2/3 株。</p>";
+    h="<h3>花圃</h3><p>点花圃：扣 1 体力，产出该花系的 1 株花苗；花圃升到 L2/L3 后一次产 2/3 株，花苗落在花圃旁的空格。</p>";
     for(var k=0;k<BEDS.length;k++){
       var b=BEDS[k],ok=S.lv>=b.need;
       h+='<div class="row"><span>'+SERIES[b.s].name+" · "+["一圃","二圃","三圃"][k]+"</span><span>"+(ok?"已开放 · L"+S.cells[b.i].lv:"Lv"+b.need+" 解锁")+"</span></div>";
     }
     h+="<h4>怎么升花圃</h4><p>把一圃拖到另一圃同阶花圃上，两圃合成一圃高一阶，产出翻倍。合并不耗体力。</p>";
   } else if(tab==="dex"){
-    h="<h3>花谱图鉴</h3><div class='dex'>";
+    h="<h3>花谱图鉴</h3><p>五种花系，每系六阶；同种同阶两两合并：花苗→花苞→花枝→花束→花篮→花艺作品。</p>";
     for(var s=0;s<SERIES.length;s++){
-      var un=s<=2;
-      h+='<div class="dexi"><div class="sq">'+art(s,3)+'</div><div class="tx"><b>'+SERIES[s].name+"</b>"+(un?"":"（待解锁）")+"<br>花苗 1 / 花苞 2 / 花枝 4<br>花束 8 / 花篮 16 / 花艺 32</div></div>";
+      var un=s<=2,row='<div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #d9e2d6;border-radius:12px;padding:6px;margin-bottom:8px">';
+      row+='<div style="width:52px;font-size:11px;font-weight:700;color:#2c4d3a">'+SERIES[s].name+'<div style="font-size:8px;font-weight:500;color:#8a988b">'+(un?"已开放":"待开放")+'</div></div>';
+      row+='<div style="display:flex;flex:1;justify-content:space-between">';
+      for(var q=1;q<=6;q++)row+='<div style="width:36px;text-align:center"><div style="width:34px;height:34px;margin:0 auto">'+art(s,q)+'</div><div style="font-size:7.5px;color:#5f7268">'+LNAME[q-1]+'</div></div>';
+      h+=row+"</div></div>";
     }
-    h+="</div>";
   } else if(tab==="shop"){
     h="<h3>装修</h3><p>金币先用来升级花店：解锁新花圃、暴击 +3%，后期再装饰店面。</p>";
     for(var i2=0;i2<LVCOST.length;i2++){
