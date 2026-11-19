@@ -18,7 +18,7 @@ var SPR=[
 var LNAME=["花苗","花苞","花枝","花束","花篮","花艺作品"];
 var VAL=[1,2,4,8,16,32];
 var C={line:"#3c4f3f",stem:"#5f8b57",leaf:"#79a768",leaf2:"#98c184",acc:"#d8b268",acc2:"#b3894a",paper:"#efe6d2"};
-var BEDS=[{i:43,s:0,need:0},{i:45,s:1,need:1},{i:47,s:2,need:3}];
+var BEDS=[{i:43,s:0,need:0},{i:45,s:1,need:0},{i:47,s:2,need:1}];
 var WEBS=[0,2,4,6,8,10,12,14,17,20,22,26,28,30,32,34,36,38,40,42,48];
 var LVCOST=[200,1500,6000,16000,30000];
 var TPL=[
@@ -26,7 +26,9 @@ var TPL=[
  {t:1,items:[[4,2]]},{t:1,items:[[4,1],[3,2]]},{t:1,items:[[5,1]]},
  {t:2,items:[[4,2],[3,2]]},{t:2,items:[[6,1]]},{t:2,items:[[6,1],[5,1]]}
 ];
-var KEY="fm_flower_v3";
+var KEY="fm_flower_v4";
+var SEED=[[1,1],[1,2],[0,1],[1,1],[2,1],[3,1],[1,2],[2,1],[4,1],[3,1],[0,2],[2,2]];
+var SEEDI=[1,7,13,19,25,31,37,41,44,46,5,11];
 var S=null,drag=null,tick=0;
 
 function r1(v){return Math.round(v*10)/10;}
@@ -65,7 +67,8 @@ function webSVG(){
 function fresh(){
   var cells=new Array(N).fill(null),k;
   for(k=0;k<BEDS.length;k++){var b=BEDS[k];cells[b.i]={k:"bed",s:b.s,lv:1};}
-  for(k=0;k<WEBS.length;k++){cells[WEBS[k]]={k:"web",s:0,lv:1};}
+  for(k=0;k<WEBS.length;k++){cells[WEBS[k]]={k:"web",s:(k%2?1:0),lv:1};}
+  for(k=0;k<SEED.length;k++){cells[SEEDI[k]]={k:"f",s:SEED[k][0],lv:SEED[k][1]};}
   return {coins:0,energy:100,energyMax:100,refillAt:0,revive:0,reviveTarget:0,crit:0.08,lv:0,cells:cells,orders:[],sel:-1,tmax:0,sales:0,day:1};
 }
 function load(){
@@ -150,8 +153,8 @@ function cellHTML(i){
   }
   if(S.sel===i)cls+=" sel";
   if(!c)cls+=" emp";
-  var ox=20+((i*37)%60),oy=20+((i*53)%60);
-  return '<div class="'+cls+'" data-i="'+i+'" style="background-position:'+ox+'% '+oy+'%">'+inner+'</div>';
+  var ox=20+((i*37)%60),oy=20+((i*53)%60),ad=(i%11)*0.32;
+  return '<div class="'+cls+'" data-i="'+i+'" style="background-position:'+ox+'% '+oy+'%;--ad:'+ad+'s">'+inner+'</div>';
 }
 function renderBoard(){
   var h="";
@@ -267,6 +270,8 @@ function bind(){
   function clearDrop(){if(hover>=0&&bd.children[hover])bd.children[hover].classList.remove("drop");hover=-1;}
   function onMove(e){
     if(!drag||drag.lock)return;
+    var dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
+    if(drag.pic){drag.pic.style.transition="none";drag.pic.style.transform="translate("+dx+"px,"+dy+"px) scale(1.24)";}
     var el=document.elementFromPoint(e.clientX,e.clientY);
     var t=el&&el.closest?el.closest(".cell"):null;
     var ti=t?+t.dataset.i:-1;
@@ -277,8 +282,9 @@ function bind(){
   bd.addEventListener("pointerdown",function(e){
     var el=e.target.closest?e.target.closest(".cell"):null;if(!el)return;
     var i=+el.dataset.i,c=S.cells[i];
-    drag={i:i,lock:!!(c&&c.k==="web")};
-    if(!drag.lock)el.classList.add("drag");
+    drag={i:i,lock:!!(c&&c.k==="web"),el:el,sx:e.clientX,sy:e.clientY,pid:e.pointerId|0};
+    var pic=el.querySelector(".pic");drag.pic=pic;
+    if(!drag.lock){el.classList.add("drag");if(pic){pic.style.transition="transform .12s ease-out";pic.style.transform="scale(1.16)";}}
     document.addEventListener("pointermove",onMove);
     e.preventDefault();
   });
@@ -287,6 +293,7 @@ function bind(){
     document.removeEventListener("pointermove",onMove);
     var d=drag;drag=null;clearDrop();
     if(bd.children[d.i])bd.children[d.i].classList.remove("drag");
+    if(d.pic){d.pic.style.transition="transform .18s cubic-bezier(.2,1.3,.6,1)";d.pic.style.transform="";setTimeout(function(){if(d.pic)d.pic.style.transition="";},200);}
     if(d.lock){tapAt(d.i);return;}
     var el=document.elementFromPoint(e.clientX,e.clientY);
     var t=el&&el.closest?el.closest(".cell"):null;
@@ -311,6 +318,9 @@ function bind(){
   $("up").addEventListener("click",upgrade);
   $("tools").addEventListener("click",function(e){var b=e.target.closest?e.target.closest("[data-tab]"):null;if(b)openSheet(b.dataset.tab);});
   $("sheet").addEventListener("click",function(e){if(e.target.id==="sheet")$("sheet").classList.remove("on");});
+  document.addEventListener("dblclick",function(e){e.preventDefault();},{passive:false});
+  document.addEventListener("gesturestart",function(e){e.preventDefault();},{passive:false});
+  document.addEventListener("touchmove",function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});
   document.addEventListener("visibilitychange",function(){if(document.hidden)save();});
   window.addEventListener("pagehide",save);
 }
