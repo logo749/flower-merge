@@ -1,5 +1,8 @@
 name: Deploy to GitHub Pages
 
+# 首次使用需在仓库 Settings -> Pages 把 Source 选为 GitHub Actions（一次即可）。
+# 之后每次 push 到 main 都会自动重新发布。
+
 on:
   push:
     branches: [main]
@@ -26,8 +29,6 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
