@@ -8,6 +8,13 @@ var SERIES=[
  {name:"夜莺花",p1:"#e2738f",p2:"#b03f60",core:"#f5c76a"},
  {name:"幽兰花",p1:"#8fb8e8",p2:"#5d86bd",core:"#f0d38a"}
 ];
+var SPR=[
+["https://aka.doubaocdn.com/s/hQv3VvmYun","https://aka.doubaocdn.com/s/0Kq04bgMjZ","https://aka.doubaocdn.com/s/TW9S7I4sNd","https://aka.doubaocdn.com/s/G1Dj2Ngqh1","https://aka.doubaocdn.com/s/VEmxz7zEBm","https://aka.doubaocdn.com/s/4XIBYQC72b"],
+["https://aka.doubaocdn.com/s/HVuaMIxVGO","https://aka.doubaocdn.com/s/1Ue9oSgVUK","https://aka.doubaocdn.com/s/MvqZDkaiG7","https://aka.doubaocdn.com/s/9V5tw0lcTl","https://aka.doubaocdn.com/s/4FabDpYVH7","https://aka.doubaocdn.com/s/03BavD2Wfu"],
+["https://aka.doubaocdn.com/s/lV14d9hmBX","https://aka.doubaocdn.com/s/mIqPK9Rxlb","https://aka.doubaocdn.com/s/4zpGTFGpZm","https://aka.doubaocdn.com/s/UpUUHkubWy","https://aka.doubaocdn.com/s/JO5UXnSrOG","https://aka.doubaocdn.com/s/C8mo8Cqi6O"],
+["https://aka.doubaocdn.com/s/CFesYaAIJP","https://aka.doubaocdn.com/s/DznZpIptCF","https://aka.doubaocdn.com/s/Y1Z72XDwjb","https://aka.doubaocdn.com/s/nNwdURIBqR","https://aka.doubaocdn.com/s/4GNzBv98op","https://aka.doubaocdn.com/s/6UXJKubLnY"],
+["https://aka.doubaocdn.com/s/em7oEYyjIy","https://aka.doubaocdn.com/s/jiyFFl6XWV","https://aka.doubaocdn.com/s/ruxhF0SQt9","https://aka.doubaocdn.com/s/PWbj7UtGtA","https://aka.doubaocdn.com/s/OlFqpL0SMt","https://aka.doubaocdn.com/s/kX4r6bNe8Z"]
+];
 var LNAME=["花苗","花苞","花枝","花束","花篮","花艺作品"];
 var VAL=[1,2,4,8,16,32];
 var C={line:"#3c4f3f",stem:"#5f8b57",leaf:"#79a768",leaf2:"#98c184",acc:"#d8b268",acc2:"#b3894a",paper:"#efe6d2"};
@@ -42,10 +49,17 @@ function art(s,lv){
   else if(lv===4){g='<path d="M24 45 L16.6 30 L31.4 30 Z" fill="'+C.paper+'" stroke="'+C.line+'" stroke-width="1.3"/><path d="M24 45 L21.6 30.6 L24 32.2 L26.4 30.6 Z" fill="'+o.p2+'"/><path d="M24 31 V19 M18.6 30 L16.6 19.6 M29.4 30 L31.4 19.6" stroke="'+C.stem+'" stroke-width="2" fill="none" stroke-linecap="round"/>'+bloom(16.2,17.4,4.6,o)+bloom(31.8,17.4,4.6,o)+bloom(24,12.6,5.2,o)+'<path d="M17 31 q7-3.2 14 0 q-7 3.1-14 0" fill="'+o.p2+'" stroke="'+C.line+'" stroke-width="1.2"/>';}
   else if(lv===5){g='<path d="M15 34 h18 l-2.6 11 h-12.8 Z" fill="'+C.acc+'" stroke="'+C.line+'" stroke-width="1.4"/><path d="M16.4 38 h15.2 M17.6 41.4 h12.8" stroke="'+C.acc2+'" stroke-width="1.3" fill="none"/><path d="M18 34 q6-9 12 0" stroke="'+C.line+'" stroke-width="1.6" fill="none"/>'+stem(24,33,7)+'<ellipse cx="12.6" cy="27.6" rx="4.6" ry="2.6" fill="'+C.leaf+'" stroke="'+C.line+'" stroke-width="1"/><ellipse cx="35.4" cy="27.6" rx="4.6" ry="2.6" fill="'+C.leaf2+'" stroke="'+C.line+'" stroke-width="1"/>'+bloom(14.8,26,4,o)+bloom(33.2,26,4,o)+bloom(19.2,20.6,4.2,o)+bloom(28.8,20.6,4.2,o)+bloom(24,17,4.6,o);}
   else {g='<path d="M17.5 32.6 h13 l-1.6 12.4 h-9.8 Z" fill="'+C.paper+'" stroke="'+C.line+'" stroke-width="1.4"/><path d="M17.5 32.6 h13" stroke="'+C.line+'" stroke-width="1.4"/><path d="M24 30 V12 M24 30 L14 16 M24 30 L34 16 M24 30 L10.5 22 M24 30 L37.5 22 M24 30 L18.5 11 M24 30 L29.5 11" stroke="'+C.stem+'" stroke-width="1.8" fill="none" stroke-linecap="round"/>'+bloom(24,11.4,4.6,o)+bloom(14,15,4,o)+bloom(34,15,4,o)+bloom(10.5,21,3.4,o)+bloom(37.5,21,3.4,o)+bloom(18.5,9.6,3.8,o)+bloom(29.5,9.6,3.8,o);}
-  return '<svg viewBox="5 7 38 42" preserveAspectRatio="xMidYMid meet">'+g+'</svg>';
+  var sv='<svg viewBox="5 7 38 42" preserveAspectRatio="xMidYMid meet">'+g+'</svg>';
+  var u=SPR[s]&&SPR[s][lv-1]?SPR[s][lv-1]:null;
+  return '<div class="aw">'+sv+(u?'<img class="sp" src="'+u+'" alt="" decoding="async" onerror="this.remove()">':'')+'</div>';
 }
 function webSVG(){
-  return '<div class="web" style="opacity:.62"><svg viewBox="0 0 40 40"><g stroke="#aab3a4" stroke-width="1" fill="none"><path d="M2 2 L38 38 M38 2 L2 38 M20 1 V39 M1 20 H39"/><path d="M9 9 Q20 12 31 9"/><path d="M7 15 Q20 19 33 15"/><path d="M7 24 Q20 28 33 24"/></g></svg></div>';
+  return '<div class="web"><svg viewBox="0 0 40 40">'
+    +'<g fill="none" stroke="#c9d2c2" stroke-width=".9" stroke-linecap="round" opacity=".95">'
+    +'<path d="M0 0L17 0M0 0L15.7 6.5M0 0L12 12M0 0L6.5 15.7M0 0L0 17"/>'
+    +'<path d="M5 0Q5 5 0 5M9 0Q9 9 0 9M13 0Q13 13 0 13M17 0Q17 17 0 17"/>'
+    +'</g><g fill="#ffffff" opacity=".85"><circle cx="5" cy="1.9" r="1.2"/><circle cx="9" cy="3.4" r="1.4"/><circle cx="5.5" cy="5.5" r="1.1"/></g>'
+    +'</svg></div>';
 }
 
 function fresh(){
@@ -93,6 +107,7 @@ function renderHUD(){
   var cost=S.lv<5?LVCOST[S.lv]:0;
   var up=$("up");
   up.disabled=!cost||S.coins<cost;
+  up.classList.toggle("hot",!!cost&&S.coins>=cost);
   $("upv").textContent=cost?cost:"满";
   $("lvl").textContent="Lv"+S.lv;
   $("crit").textContent="暴击 "+critPct()+"%";
@@ -105,7 +120,8 @@ function renderOrders(){
       var lv=o.items[m][0],n=o.items[m][1],have=countFlowers(o.s,lv),bad=have<n?" bad":"";
       ns+='<div class="ni">'+art(o.s,lv)+'<i class="'+bad.trim()+'">×'+n+'</i></div>';
     }
-    h+='<div class="order'+(ok?" done":"")+'"><div class="t"><span>'+["日常","进阶","精品","典藏"][Math.min(o.t+ (S.lv>3?1:0),3)]+'</span><span>'+SERIES[o.s].name+'</span></div>'
+    var kc=["#e08a5f","#e0a92f","#9a7bd0","#e2718c","#5d9bd6"][o.s]||"#3f9068";
+    h+='<div class="order'+(ok?" done":"")+'" style="border-top:3px solid '+kc+'"><div class="t"><span>'+["日常","进阶","精品","典藏"][Math.min(o.t+ (S.lv>3?1:0),3)]+'</span><span style="color:'+kc+'">'+SERIES[o.s].name+'</span></div>'
       +'<div class="n">'+ns+'</div>'
       +'<button data-del="'+k+'"'+(ok?"":" disabled")+'>'+(ok?"交付":"未凑齐")+'</button>'
       +'<div class="c">+'+o.coins+' 金币</div></div>';
@@ -127,7 +143,7 @@ function cellHTML(i){
       inner='<div class="pic">'+art(c.s,1)+'</div><div class="tag">'+SERIES[c.s].name+" L"+c.lv+"</div>";
       if(locked)inner='<div class="pic" style="opacity:.35">'+art(c.s,1)+'</div><div class="tag" style="top:1px;bottom:auto">Lv'+need.need+' 解锁</div>';
     } else if(c.k==="web"){
-      inner='<div class="pic">'+art(c.s,c.lv)+'</div>'+webSVG();
+      cls+=" webbed";inner='<div class="pic">'+art(c.s,c.lv)+'</div>'+webSVG();
     } else {
       inner='<div class="pic">'+art(c.s,c.lv)+'</div><div class="lv">L'+c.lv+"</div>";
     }
@@ -299,18 +315,18 @@ function bind(){
 function openSheet(tab){
   var sb=$("sb"),h="";
   if(tab==="bed"){
-    h="<h3>花圃</h3><p>点花圃：扣 1 体力，产出该花系的 1 株花苗；花圃升到 L2/L3 后一次产 2/3 株。花苗落在花圃旁的空格。</p>";
+    h="<h3>花圃</h3><p>点花圃：扣 1 体力，产出该花系的 1 株花苗；花圃升到 L2/L3 后一次产 2/3 株。</p>";
     for(var k=0;k<BEDS.length;k++){
       var b=BEDS[k],ok=S.lv>=b.need;
       h+='<div class="row"><span>'+SERIES[b.s].name+" · "+["一圃","二圃","三圃"][k]+"</span><span>"+(ok?"已开放 · L"+S.cells[b.i].lv:"Lv"+b.need+" 解锁")+"</span></div>";
     }
     h+="<h4>怎么升花圃</h4><p>把一圃拖到另一圃同阶花圃上，两圃合成一圃高一阶，产出翻倍。合并不耗体力。</p>";
   } else if(tab==="dex"){
-    h="<h3>花谱图鉴</h3><p>五种花系，每系六阶；同种同阶两两合并：花苗→花苞→花枝→花束→花篮→花艺作品。</p>";
+    h="<h3>花谱图鉴</h3><p>五种花系 · 每系六阶；同种同阶两两合并，花苗→花苞→花枝→花束→花篮→花艺作品。</p>";
     for(var s=0;s<SERIES.length;s++){
       var un=s<=2,row='<div style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #d9e2d6;border-radius:12px;padding:6px;margin-bottom:8px">';
       row+='<div style="width:52px;font-size:11px;font-weight:700;color:#2c4d3a">'+SERIES[s].name+'<div style="font-size:8px;font-weight:500;color:#8a988b">'+(un?"已开放":"待开放")+'</div></div>';
-      row+='<div style="display:flex;flex:1;justify-content:space-between">';
+      row+='<div style="display:flex;gap:1px;flex:1;justify-content:space-between">';
       for(var q=1;q<=6;q++)row+='<div style="width:36px;text-align:center"><div style="width:34px;height:34px;margin:0 auto">'+art(s,q)+'</div><div style="font-size:7.5px;color:#5f7268">'+LNAME[q-1]+'</div></div>';
       h+=row+"</div></div>";
     }
