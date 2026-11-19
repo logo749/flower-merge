@@ -1,6 +1,6 @@
 (function(){
 "use strict";
-var COLS=7,ROWS=9,N=COLS*ROWS;
+var COLS=7,ROWS=7,N=COLS*ROWS;
 var SERIES=[
  {name:"星露花",p1:"#fdf1e0",p2:"#e3c9b0",core:"#e8b34e"},
  {name:"蜜穗花",p1:"#f2c65c",p2:"#cfa03a",core:"#fff3cf"},
@@ -9,24 +9,24 @@ var SERIES=[
  {name:"幽兰花",p1:"#8fb8e8",p2:"#5d86bd",core:"#f0d38a"}
 ];
 var SPR=[
-["https://aka.doubaocdn.com/s/hQv3VvmYun","https://aka.doubaocdn.com/s/0Kq04bgMjZ","https://aka.doubaocdn.com/s/TW9S7I4sNd","https://aka.doubaocdn.com/s/G1Dj2Ngqh1","https://aka.doubaocdn.com/s/VEmxz7zEBm","https://aka.doubaocdn.com/s/4XIBYQC72b"],
-["https://aka.doubaocdn.com/s/HVuaMIxVGO","https://aka.doubaocdn.com/s/1Ue9oSgVUK","https://aka.doubaocdn.com/s/MvqZDkaiG7","https://aka.doubaocdn.com/s/9V5tw0lcTl","https://aka.doubaocdn.com/s/4FabDpYVH7","https://aka.doubaocdn.com/s/03BavD2Wfu"],
-["https://aka.doubaocdn.com/s/lV14d9hmBX","https://aka.doubaocdn.com/s/mIqPK9Rxlb","https://aka.doubaocdn.com/s/4zpGTFGpZm","https://aka.doubaocdn.com/s/UpUUHkubWy","https://aka.doubaocdn.com/s/JO5UXnSrOG","https://aka.doubaocdn.com/s/C8mo8Cqi6O"],
-["https://aka.doubaocdn.com/s/CFesYaAIJP","https://aka.doubaocdn.com/s/DznZpIptCF","https://aka.doubaocdn.com/s/Y1Z72XDwjb","https://aka.doubaocdn.com/s/nNwdURIBqR","https://aka.doubaocdn.com/s/4GNzBv98op","https://aka.doubaocdn.com/s/6UXJKubLnY"],
-["https://aka.doubaocdn.com/s/em7oEYyjIy","https://aka.doubaocdn.com/s/jiyFFl6XWV","https://aka.doubaocdn.com/s/ruxhF0SQt9","https://aka.doubaocdn.com/s/PWbj7UtGtA","https://aka.doubaocdn.com/s/OlFqpL0SMt","https://aka.doubaocdn.com/s/kX4r6bNe8Z"]
+["https://aka.doubaocdn.com/s/E5UA5CsRHx","https://aka.doubaocdn.com/s/RlZ7UGtu6V","https://aka.doubaocdn.com/s/Uom1YK5T1A","https://aka.doubaocdn.com/s/0sGPhz2VWt","https://aka.doubaocdn.com/s/ujBNBmet69","https://aka.doubaocdn.com/s/4kcsB7tsY8"],
+["https://aka.doubaocdn.com/s/D49uVW1Cmh","https://aka.doubaocdn.com/s/w59W5YHVzb","https://aka.doubaocdn.com/s/I9akUFMUOe","https://aka.doubaocdn.com/s/VLShKsb34o","https://aka.doubaocdn.com/s/D9b4DnPIrL","https://aka.doubaocdn.com/s/XJx0SrFhTV"],
+["https://aka.doubaocdn.com/s/b6WXrBL3gO","https://aka.doubaocdn.com/s/iK1oNQOqFY","https://aka.doubaocdn.com/s/KmRJcd7YLG","https://aka.doubaocdn.com/s/XOlVhz4SCV","https://aka.doubaocdn.com/s/OkvDlXlrGR","https://aka.doubaocdn.com/s/9cCd8iO2EC"],
+["https://aka.doubaocdn.com/s/4pDWTKJaY3","https://aka.doubaocdn.com/s/ooVNneqh5x","https://aka.doubaocdn.com/s/DSFe2y9Zjp","https://aka.doubaocdn.com/s/L5GHuNVI9Y","https://aka.doubaocdn.com/s/00VU9aCcWl","https://aka.doubaocdn.com/s/JLI0PQ0MUw"],
+["https://aka.doubaocdn.com/s/UIrKmSsiY7","https://aka.doubaocdn.com/s/TUUxXmSZU3","https://aka.doubaocdn.com/s/ALz33hTISE","https://aka.doubaocdn.com/s/HpM7OVXWJV","https://aka.doubaocdn.com/s/gFMA26f7i1","https://aka.doubaocdn.com/s/wbO5eWRVK7"]
 ];
 var LNAME=["花苗","花苞","花枝","花束","花篮","花艺作品"];
 var VAL=[1,2,4,8,16,32];
 var C={line:"#3c4f3f",stem:"#5f8b57",leaf:"#79a768",leaf2:"#98c184",acc:"#d8b268",acc2:"#b3894a",paper:"#efe6d2"};
-var BEDS=[{i:57,s:0,need:0},{i:59,s:1,need:1},{i:61,s:2,need:3}];
-var WEBS=[0,3,6,8,11,13,14,16,19,24,27,28,30,33,35,36,39,42,45,48,50,53,55,56,58,62];
+var BEDS=[{i:43,s:0,need:0},{i:45,s:1,need:1},{i:47,s:2,need:3}];
+var WEBS=[0,2,4,6,8,10,12,14,17,20,22,26,28,30,32,34,36,38,40,42,48];
 var LVCOST=[200,1500,6000,16000,30000];
 var TPL=[
  {t:0,items:[[2,2],[3,1]]},{t:0,items:[[3,2]]},{t:0,items:[[3,3]]},
  {t:1,items:[[4,2]]},{t:1,items:[[4,1],[3,2]]},{t:1,items:[[5,1]]},
  {t:2,items:[[4,2],[3,2]]},{t:2,items:[[6,1]]},{t:2,items:[[6,1],[5,1]]}
 ];
-var KEY="fm_flower_v2";
+var KEY="fm_flower_v3";
 var S=null,drag=null,tick=0;
 
 function r1(v){return Math.round(v*10)/10;}
@@ -66,7 +66,7 @@ function fresh(){
   var cells=new Array(N).fill(null),k;
   for(k=0;k<BEDS.length;k++){var b=BEDS[k];cells[b.i]={k:"bed",s:b.s,lv:1};}
   for(k=0;k<WEBS.length;k++){cells[WEBS[k]]={k:"web",s:0,lv:1};}
-  return {coins:0,energy:100,crit:0.08,lv:0,cells:cells,orders:[],sel:-1,tmax:0,sales:0,day:1};
+  return {coins:0,energy:100,energyMax:100,refillAt:0,revive:0,reviveTarget:0,crit:0.08,lv:0,cells:cells,orders:[],sel:-1,tmax:0,sales:0,day:1};
 }
 function load(){
   try{var raw=localStorage.getItem(KEY);if(!raw)return fresh();var o=JSON.parse(raw);
