@@ -139,17 +139,19 @@ function cellHTML(i){
     if(c.k==="bed"){
       var need=BEDS.filter(function(b){return b.i===i;})[0];
       var locked=need&&S.lv<need.need;
-      cls+=" bed"+(locked?" lock":"");
+      cls+=" bed"+(locked?" lock":"")+" s"+c.s;
       inner='<div class="pic">'+art(c.s,1)+'</div><div class="tag">'+SERIES[c.s].name+" L"+c.lv+"</div>";
       if(locked)inner='<div class="pic" style="opacity:.35">'+art(c.s,1)+'</div><div class="tag" style="top:1px;bottom:auto">Lv'+need.need+' 解锁</div>';
     } else if(c.k==="web"){
-      cls+=" webbed";inner='<div class="pic">'+art(c.s,c.lv)+'</div>'+webSVG();
+      cls+=" webbed s"+c.s;inner='<div class="pic">'+art(c.s,c.lv)+'</div>'+webSVG();
     } else {
-      inner='<div class="pic">'+art(c.s,c.lv)+'</div><div class="lv">L'+c.lv+"</div>";
+      cls+=" s"+c.s;inner='<div class="pic">'+art(c.s,c.lv)+'</div><div class="lv">L'+c.lv+"</div>";
     }
   }
   if(S.sel===i)cls+=" sel";
-  return '<div class="'+cls+'" data-i="'+i+'">'+inner+'</div>';
+  if(!c)cls+=" emp";
+  var ox=20+((i*37)%60),oy=20+((i*53)%60);
+  return '<div class="'+cls+'" data-i="'+i+'" style="background-position:'+ox+'% '+oy+'%">'+inner+'</div>';
 }
 function renderBoard(){
   var h="";
